@@ -43,7 +43,7 @@
  */
  
  metadata {
-	definition (name: "4-in-1 sensor-rev2", namespace: "zooz", author: "Robert Vandervoort") {
+	definition (name: "4-in-1-sensor-rev2", namespace: "zooz", author: "Robert Vandervoort") {
 		capability "Motion Sensor"
 		capability "Acceleration Sensor"
 		capability "Temperature Measurement"
