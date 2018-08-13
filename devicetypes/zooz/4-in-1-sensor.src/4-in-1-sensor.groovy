@@ -50,7 +50,7 @@
  *
  */
 metadata {
-    definition (name: "Zooz 4-in-1 Sensor", namespace: "nonlogical", author: "Kevin LaFramboise", vid:"generic-motion-6") {
+    definition (name: "4-in-1-sensor", namespace: "zooz", author: "Kevin LaFramboise", vid:"generic-motion-6") {
         capability "Sensor"
         capability "Configuration"
 
