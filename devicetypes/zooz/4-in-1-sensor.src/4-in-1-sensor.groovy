@@ -90,7 +90,7 @@ metadata {
     preferences {
         section {
             input "primaryTileStatus", "enum",
-                    title: "Primary Status:",
+                    title: "The Primary Status:",
                     defaultValue: primaryTileStatusSetting,
                     required: false,
                     options: primaryStatusOptions
@@ -98,7 +98,7 @@ metadata {
             getBoolInput("roundPrimaryStatus", "Round the Primary Status to a whole number?", false)
 
             input "secondaryTileStatus", "enum",
-                    title: "Secondary Status:",
+                    title: "The Secondary Status:",
                     defaultValue: secondaryTileStatusSetting,
                     required: false,
                     options: secondaryStatusOptions
@@ -129,16 +129,18 @@ metadata {
             getParamInput(ledIndicatorModeParam)
         }
 
-        input "decimalPlaces", "enum",
-                title: "Round values to how many decimal places?",
-                defaultValue: 2,
-                required: false,
-                options: [[0:"0"],[1:"1"],[2:"2"]]
+        section {
+            input "decimalPlaces", "enum",
+                    title: "Round values to how many decimal places?",
+                    defaultValue: 2,
+                    required: false,
+                    options: [[0:"0"],[1:"1"],[2:"2"]]
 
-        getNumberInput("checkinInterval", "Minimum Check-in Interval [0-167]\n(0 = 10 Minutes [FOR TESTING ONLY])\n(1 = 1 Hour)\n(167 = 7 Days)", "0..167", checkinIntervalSetting)
-        getNumberInput("reportBatteryEvery", "Battery Reporting Interval [1-167]\n(1 = 1 Hour)\n(167 = 7 Days)\nThis setting can't be less than the Minimum Check-in Interval.", "1..167", batteryReportingIntervalSetting)
-        getBoolInput("autoClearTamper", "Automatically Clear Tamper?\n(The tamper detected event is raised when the device is opened.  This setting allows you to decide whether or not to have the clear event automatically raised when the device closes.)", false)
-        getBoolInput("debugOutput", "Enable debug logging?", true)
+            getNumberInput("checkinInterval", "Minimum Check-in Interval [0-167]\n(0 = 10 Minutes [FOR TESTING ONLY])\n(1 = 1 Hour)\n(167 = 7 Days)", "0..167", checkinIntervalSetting)
+            getNumberInput("reportBatteryEvery", "Battery Reporting Interval [1-167]\n(1 = 1 Hour)\n(167 = 7 Days)\nThis setting can't be less than the Minimum Check-in Interval.", "1..167", batteryReportingIntervalSetting)
+            getBoolInput("autoClearTamper", "Automatically Clear Tamper?\n(The tamper detected event is raised when the device is opened.  This setting allows you to decide whether or not to have the clear event automatically raised when the device closes.)", false)
+            getBoolInput("debugOutput", "Enable debug logging?", true)
+        }
     }
 
     tiles(scale: 2) {
@@ -690,7 +692,7 @@ private createCheckIntervalEvent(seconds) {
     // Set the Health Check interval so that it reports offline 5 minutes after it's missed 2 checkins.
     def val = ((seconds * 2) + (5 * 60))
 
-    def eventMap = createEventMap("checkInterval", val, "", false)
+    def eventMap = createEventMap("checkInterval", val, "", true)
 
     eventMap.data = [protocol: "zwave", hubHardwareId: device.hub.hardwareID]
 
@@ -1202,5 +1204,5 @@ private logDebug(msg) {
 }
 
 private logTrace(msg) {
-    // log.trace "$msg"
+    log.trace "$msg"
 }
