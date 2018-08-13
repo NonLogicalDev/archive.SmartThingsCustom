@@ -156,7 +156,7 @@
 			title: "Reporting threshold  for temp",
             description: "Enter a value 1-50 changing reporting threshold for temp. Represents 0.1 degree increments.",
             range: "1..50",
-			defaultValue: 50,
+			defaultValue: 1,
             required: false,
             displayDuringSetup: false
 		input "humidityoffset", "number",
